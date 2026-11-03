@@ -1,0 +1,173 @@
+{
+  "source_database": "treasury_equity_research_2010_2025.sqlite",
+  "database_sha256": "0bb238a2b5b136b891281a3cb97554ae8a73efb6f60650990778f88a163c4017",
+  "database_integrity": "ok",
+  "sql_views_in_database": 0,
+  "export_queries_verified_against_existing_tables": true,
+  "note": "Read-only SQL exports from original database. No statistical recalculation. CPI comparison is exploratory. Yield-curve interactions are not featured. Missing numbers exported as empty fields.",
+  "files": {
+    "treasury_yields.csv": {
+      "rows": 12072,
+      "columns": [
+        "date",
+        "maturity",
+        "yield_pct"
+      ],
+      "sha256": "0423a350d9971c66248f795694e656b8e88c4220266e034955bd379dbac70f87",
+      "source_sql": "SELECT date,maturity,yield_pct FROM treasury_yields ORDER BY date,maturity",
+      "date_min": "2010-01-04",
+      "date_max": "2025-12-31"
+    },
+    "etf_daily.csv": {
+      "rows": 8048,
+      "columns": [
+        "date",
+        "etf",
+        "close_rth",
+        "log_return",
+        "distribution",
+        "late_start",
+        "early_end",
+        "source_frequency"
+      ],
+      "sha256": "bfc27469a780dc022b3ec5302ea8613e731e93023662a72da4ee4ff9fef6b33f",
+      "source_sql": "SELECT date,etf,close_rth,log_return,distribution,late_start,early_end,source_frequency FROM etf_daily ORDER BY date,etf",
+      "date_min": "2010-01-04",
+      "date_max": "2025-12-31"
+    },
+    "treasury_event_responses.csv": {
+      "rows": 23934,
+      "columns": [
+        "date",
+        "maturity_years",
+        "yield_change_bp",
+        "event_class",
+        "eligible_for_response_analysis",
+        "etf",
+        "during_return_pct",
+        "during_vol_pct",
+        "following_return_pct",
+        "following_vol_pct"
+      ],
+      "sha256": "42dcb172bccbe89c538c8a925a5fd7de7e7bad5ac4fae0e33542e0999ccecfad",
+      "source_sql": "SELECT e.date,e.maturity_years,e.yield_change_bp,e.event_class,e.eligible_for_response_analysis,r.etf,r.during_return_pct,r.during_vol_pct,r.following_return_pct,r.following_vol_pct FROM treasury_events e INNER JOIN etf_event_responses r ON e.date=r.date AND e.maturity_years=r.maturity_years ORDER BY e.date,e.maturity_years,r.etf",
+      "date_min": "2010-01-11",
+      "date_max": "2025-12-31"
+    },
+    "maturity_etf_inference.csv": {
+      "rows": 12,
+      "columns": [
+        "maturity_years",
+        "etf",
+        "contrast",
+        "n_event",
+        "n_normal",
+        "event_mean_vol_pct",
+        "normal_mean_vol_pct",
+        "difference_percentage_points",
+        "relative_difference_pct",
+        "ci_95_low_pp",
+        "ci_95_high_pp",
+        "p_bootstrap_two_sided",
+        "p_holm",
+        "holm_significant_0_05",
+        "bootstrap_resamples",
+        "block_length_equity_sessions",
+        "random_seed"
+      ],
+      "sha256": "ac9b7ac4dbacc3402122bc2ab5c47dd8e395a7d2c410f405baf93841191b06df",
+      "source_sql": "SELECT * FROM maturity_etf_inference ORDER BY maturity_years,etf,contrast"
+    },
+    "etf_sensitivity_comparisons.csv": {
+      "rows": 6,
+      "columns": [
+        "maturity_years",
+        "contrast",
+        "n_event",
+        "n_normal",
+        "spy_relative_vol_change_pct",
+        "iwm_relative_vol_change_pct",
+        "spy_minus_iwm_percentage_points",
+        "ci_95_low_percentage_points",
+        "ci_95_high_percentage_points",
+        "p_bootstrap_two_sided",
+        "p_holm",
+        "holm_significant_0_05",
+        "bootstrap_resamples",
+        "block_length_equity_sessions",
+        "random_seed"
+      ],
+      "sha256": "c7d40053bd984d0bf4a94d0043b24f8ba5e897d6d88baf9d6eaa4a254c60b30f",
+      "source_sql": "SELECT * FROM etf_sensitivity_comparisons ORDER BY maturity_years,contrast"
+    },
+    "cross_maturity_descriptive.csv": {
+      "rows": 12,
+      "columns": [
+        "maturity_years",
+        "treasury_event",
+        "etf",
+        "n_treasury_events",
+        "n_response_eligible_events",
+        "mean_treasury_change_bp",
+        "mean_abs_treasury_change_bp",
+        "full_sample_5obs_yield_change_sd_bp",
+        "mean_abs_shock_in_yield_sd_units",
+        "normal_mean_5d_realized_vol_pct",
+        "event_mean_5d_realized_vol_pct",
+        "difference_percentage_points",
+        "relative_increase_pct",
+        "within_maturity_holm_p",
+        "within_maturity_significant"
+      ],
+      "sha256": "a82bbfdfa2895d00c9d2a6ea860fd1fe4ab70c57245db5385033e0874f4c9807",
+      "source_sql": "SELECT * FROM cross_maturity_descriptive ORDER BY maturity_years,treasury_event,etf"
+    },
+    "cross_maturity_inference.csv": {
+      "rows": 12,
+      "columns": [
+        "etf",
+        "direction",
+        "contrast",
+        "maturity_a_years",
+        "maturity_b_years",
+        "exposure_a_sd",
+        "exposure_b_sd",
+        "standardized_effect_a",
+        "standardized_effect_b",
+        "difference_standardized_effect",
+        "ci_95_low",
+        "ci_95_high",
+        "p_bootstrap_two_sided",
+        "p_holm_12_comparisons",
+        "significant_holm_0_05",
+        "bootstrap_resamples",
+        "block_length_equity_sessions",
+        "seed"
+      ],
+      "sha256": "baec3e9d0a9691a4c26fe13e8bd9a9b689de125d5ae54ba7e5aef7295150e474",
+      "source_sql": "SELECT * FROM cross_maturity_inference ORDER BY etf,direction,contrast"
+    },
+    "cpi_non_cpi_inference.csv": {
+      "rows": 5,
+      "columns": [
+        "outcome",
+        "cpi_n",
+        "non_cpi_n",
+        "cpi_mean",
+        "non_cpi_mean",
+        "difference_cpi_minus_non_cpi",
+        "cpi_median",
+        "non_cpi_median",
+        "unit",
+        "ci95_low",
+        "ci95_high",
+        "p_unadjusted",
+        "family",
+        "p_holm",
+        "significant_holm_005"
+      ],
+      "sha256": "ef98183669d8e7b510ab19ea0e5512bdea04a78832d844579aca57c26597b148",
+      "source_sql": "SELECT * FROM cpi_non_cpi_inference ORDER BY outcome"
+    }
+  }
+}

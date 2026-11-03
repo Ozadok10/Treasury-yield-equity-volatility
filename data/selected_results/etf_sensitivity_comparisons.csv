@@ -1,0 +1,7 @@
+﻿maturity_years,contrast,n_event,n_normal,spy_relative_vol_change_pct,iwm_relative_vol_change_pct,spy_minus_iwm_percentage_points,ci_95_low_percentage_points,ci_95_high_percentage_points,p_bootstrap_two_sided,p_holm,holm_significant_0_05,bootstrap_resamples,block_length_equity_sessions,random_seed
+2,sharp_decrease_relative_sensitivity_spy_minus_iwm,445,3096,49.73865076,33.99923201,15.73941875,3.17668703,31.95875501,0.03059388,0.06118776,0,5000,20,20261028
+2,sharp_increase_relative_sensitivity_spy_minus_iwm,443,3096,8.88452331,3.99314112,4.89138219,-1.00964732,10.97320629,0.1059788,0.1059788,0,5000,20,20261028
+10,sharp_decrease_relative_sensitivity_spy_minus_iwm,413,3137,65.31528819,47.90924339,17.4060448,5.32034502,32.95351395,0.01519696,0.01519696,1,5000,20,20261029
+10,sharp_increase_relative_sensitivity_spy_minus_iwm,434,3137,22.98041148,12.65705329,10.32335819,4.09049074,17.22903627,0.00259948,0.00519896,1,5000,20,20261029
+30,sharp_decrease_relative_sensitivity_spy_minus_iwm,445,3114,61.81549763,48.38105666,13.43444096,1.96997324,28.68874998,0.04659068,0.04659068,1,5000,20,20261029
+30,sharp_increase_relative_sensitivity_spy_minus_iwm,425,3114,26.9455882,15.79872775,11.14686045,4.3527075,18.33266947,0.00219956,0.00439912,1,5000,20,20261029
